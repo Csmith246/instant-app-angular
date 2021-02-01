@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app/app.component';
+import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule

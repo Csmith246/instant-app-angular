@@ -1,0 +1,66 @@
+<div class="ctrl-panel-form">
+
+    <!-- <div class="form-section">
+        <calcite-label layout="inline-space-between">
+            Use directions
+            <calcite-switch></calcite-switch>
+        </calcite-label>
+    </div> -->
+
+    <div class="form-section">
+
+        <calcite-label layout="inline-space-between">
+            <!---->
+            Buffer Unit
+            <calcite-select id="unitSelect">
+                <calcite-option value="feet">Feet</calcite-option>
+                <calcite-option value="kilometers">Kilometers</calcite-option>
+                <calcite-option value="meters">Meters</calcite-option>
+                <calcite-option value="miles">Miles</calcite-option>
+                <calcite-option value="nautical-miles">Nautical Miles</calcite-option>
+                <calcite-option value="yards">Yards</calcite-option>
+            </calcite-select>
+        </calcite-label>
+
+        <div>
+            <calcite-label status="idle" scale="m" class="sc-calcite-label-h sc-calcite-label-s" dir="ltr"
+                alignment="start" layout="inline-space-between">
+                Buffer Value
+                <calcite-input id="bufferInputValue" class="buffer-input" type="number" status="idle" alignment="end"
+                    number-button-type="none" min="1" step="1" [suffix-text]="selectedUnitLabel" [value]="(routingService.bufferValue$ | async)"
+                    placeholder="Buffer Value">
+                </calcite-input>
+            </calcite-label>
+        </div>
+
+    </div>
+
+    <div class="form-section" [ngSwitch]="(routingService.directionsStep$ | async)">
+
+        <div *ngSwitchCase="'startPoint'">
+            <h3>Click anywhere on the map to choose a <em>start point</em></h3>
+        </div>
+
+        <div *ngSwitchCase="'endPoint'">
+            <h3>Click anywhere on the map to choose a <em>end point</em></h3>
+        </div>
+
+        <div *ngSwitchCase="'calculating-route'">
+            <calcite-loader active="" type="indeterminate" scale="l" value="0"></calcite-loader>
+        </div>
+
+        <div *ngSwitchCase="'finished'">
+            <div class="results-message">We found <strong>{{ routingService.featuresAlongRoute.length }}</strong> plaques along your route!</div>
+            <calcite-label layout="inline-space-between">
+                &nbsp;
+                <calcite-button (click)="routingService.recalculateBuffer()">Recalculate Buffer</calcite-button>
+            </calcite-label>
+            <calcite-label layout="inline-space-between">
+                &nbsp;
+                <calcite-button (click)="routingService.resetDirectionSteps()">Try another route</calcite-button>
+            </calcite-label>
+        </div>
+
+    </div>
+
+</div>
