@@ -10,10 +10,20 @@ import MapView from "@arcgis/core/views/MapView";
 export class AppComponent implements OnInit {
   title = 'instant-app-angular';
 
-  ngOnInit(){
+  ngOnInit() {
     const map = new EsriMap({
       basemap: "streets"
     });
-    const view = new MapView({ container: "viewDiv", map });
+    const view = new MapView({
+      container: "viewDiv",
+      center: [-98.8, 31.3], //Longitude, Latitude
+      zoom: 5,
+      map
+    });
+
+    const calciteBtn = document.createElement("calcite-button");
+    calciteBtn.innerText = "Calcite Button";
+
+    view.ui.add(calciteBtn, "top-right");
   }
 }
