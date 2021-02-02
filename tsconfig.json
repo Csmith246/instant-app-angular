@@ -22,9 +22,9 @@
       "dom"
     ]
   },
-  "files": [
-    "node_modules/@esri/application-base-js/index.d.ts",
-  ],
+  // "files": [
+  //   // "node_modules/@esri/application-base-js/index.d.ts",
+  // ],
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

@@ -9,6 +9,7 @@ import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
 import * as webMercatorUtils from "@arcgis/core/geometry/support/webMercatorUtils";
 import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import { ApplicationBaseService } from './application-base.service';
 
 export type directionSteps = "startPoint" | "endPoint" | "calculating-route" | "finished";
 
@@ -20,8 +21,8 @@ export class RoutingService {
   mapInfo$: Subject<{ view: __esri.MapView, map: __esri.WebMap }> = new Subject();
   directionsStep$ = new BehaviorSubject<directionSteps>("startPoint");
   featuresAlongRoute: __esri.Graphic[] = [];
-  selectedUnit$ = new BehaviorSubject<string>("feet");
-  bufferValue$ = new BehaviorSubject<string>("50");
+  selectedUnit$ = new BehaviorSubject<string>("miles");
+  bufferValue$ = new BehaviorSubject<string>("1");
 
   _route!: __esri.Polyline | null;
   _oldBuffLineGraphic: __esri.Graphic | null = null;
@@ -35,7 +36,7 @@ export class RoutingService {
 
   private _routingLayer: __esri.GraphicsLayer = new GraphicsLayer();
 
-  constructor() {
+  constructor(private applicationBaseService: ApplicationBaseService) {
 
     this.mapInfo$.subscribe(({ view, map }) => {
 
@@ -47,7 +48,7 @@ export class RoutingService {
       map.add(this._routingLayer);
       
       view.when(() => {
-        esriConfig.apiKey = "AAPKfc2182cff9b2418f969020f758b82e9dEN2f3e8WLUv9kd0gjeP437vrGJiglDcJguCHu8OLQjagaFdQT8P_UJWNq9bNglJb";
+        esriConfig.apiKey = applicationBaseService.config.getValue().apiKey;
         view.on("click", this._processClick.bind(this));
       })
     });

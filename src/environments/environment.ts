@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
 
+  // https://github.com/Esri/application-base-js#constructor-options
   application: {
     "home": true,
     "homePosition": "top-left",
@@ -14,13 +15,9 @@ export const environment = {
     "webscene": "",
     "portalUrl": "https://arcgis.com",
     "theme": "light",
-    "share": false,
-    "sharePosition": "top-right",
     "oauthappid": "arcgisWebApps",
     "proxyUrl": "",
     "units": "",
-    "googleAnalytics": false,
-    "googleAnalyticsKey": null,
     "customUrlLayer": {
       "id": null,
       "fields": []
@@ -42,9 +39,11 @@ export const environment = {
           "url": null
         }
       ]
-    }
+    },
+    "apiKey": "AAPKfc2182cff9b2418f969020f758b82e9dEN2f3e8WLUv9kd0gjeP437vrGJiglDcJguCHu8OLQjagaFdQT8P_UJWNq9bNglJb"
   },
 
+  // https://github.com/Esri/application-base-js#applicationbaseconfig
   applicationBase: {
     "localStorage": {
       "fetch": true

@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
-
 import Popup from "@arcgis/core/widgets/Popup";
+import Home from "@arcgis/core/widgets/Home";
+
 import { RoutingService } from 'src/app/services/routing.service';
 import { ApplicationBaseService } from 'src/app/services/application-base.service';
+import { ApplicationConfig } from 'src/assets/ApplicationBase/interfaces';
 
 
 @Component({
@@ -50,6 +52,14 @@ export class AppComponent implements OnInit {
     });
 
     this.routingService.mapInfo$.next({ map, view });
+
+    
+    this.applicationBaseService.config.subscribe((config: ApplicationConfig)=>{
+      if(config){
+        const { home, homePosition } = config;
+        if(home) view.ui.add(new Home({view}), homePosition);
+      }
+    })
   }
 
   setWidthStyle() {

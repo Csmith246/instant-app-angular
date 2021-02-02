@@ -1,4 +1,5 @@
 <calcite-shell #shell theme="dark">
+    
     <div slot="shell-header">
         <header>
             <calcite-label layout="inline" disable-spacing>
@@ -7,13 +8,14 @@
             </calcite-label>
         </header>
     </div>
+    
     <calcite-shell-panel #shellPanel slot="primary-panel" position="start">
         <app-control-panel></app-control-panel>
     </calcite-shell-panel>
+
     <div style="position: relative; width:100%; height:100%;">
         <div id="viewDiv" [ngStyle]="setWidthStyle()">
         </div>
-
     </div>
 
 </calcite-shell>
