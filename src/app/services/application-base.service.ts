@@ -15,7 +15,6 @@ export class ApplicationBaseService {
   portal = new BehaviorSubject<Portal>(null);
 
   constructor() {
-    console.log("APPBASE");
     new ApplicationBase({
       config: environment.application,
       settings: environment.applicationBase as any

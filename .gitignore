@@ -12,6 +12,7 @@
 
 # Calcite (ESRI design system) assets
 /src/assets/calcite/*
+!/src/assets/calcite/.gitkeep
 
 # dependencies
 /node_modules
